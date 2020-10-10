@@ -1,22 +1,15 @@
-const express = require('express')
-const router = require('./router')
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Button } from 'antd-mobile'
+import 'antd-mobile/dist/antd-mobile.css';
 
-
-
-const app = express()
-
-
-app.use(router)
-
-
-app.listen(8080, function() {
-    console.log('running', 'http://localhost:8080/');
-})
-
-module.exports = app
-return ( <
-    div > 你好 < Button > Start < /Button> </div >
-)
+class App extends React.Component {
+    render() {
+        return ( <
+            div > 你好 < Button > Start < /Button> </div >
+        )
+    }
 }
-}
+
+
 ReactDOM.render( < App / > , document.querySelector("#root"))
