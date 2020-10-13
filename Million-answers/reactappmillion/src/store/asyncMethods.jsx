@@ -6,7 +6,7 @@ const host = "http://localhost:8080";
 let fns = {
   async TmList() {
     console.log("TmList");
-    let page = parseInt(Math.random() * 10);
+    let page = parseInt(Math.random() * 20);
     let httpUrl = `${host}/api/rtimu?page=${page}`;
     //封装成promise
     let res = await new Promise((resolve, reject) => {

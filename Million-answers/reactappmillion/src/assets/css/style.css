@@ -2,6 +2,10 @@
 
 } */
 
+body {
+    background-color: pink;
+}
+
 .datiPage h2 {
     width: 90%;
     margin: 10px auto;
@@ -36,4 +40,20 @@
 .error {
     background-color: orangered;
     color: #fff;
+}
+
+.center {
+    text-align: center;
+}
+
+.padbt {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+img {
+    height: 100%;
+    width: 100%;
 }

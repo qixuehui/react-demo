@@ -9,6 +9,8 @@ import Dati from "./view/Dati";
 import PassDati from "./view/PassDati";
 import CompetitionDati from "./view/CompetitionDati";
 import Result from "./view/Result";
+import SuccessResult from "./view/SuccessResult";
+import FailureResult from "./view/FailureResult";
 import store from "./store/data";
 import "./assets/css/style.css";
 // import { createStore } from 'redux'
@@ -24,7 +26,9 @@ ReactDOM.render(
       <Route path="/dati" exact component={Dati}></Route>
       <Route path="/passdati" exact component={PassDati}></Route>
       <Route path="/competitiondati" exact component={CompetitionDati}></Route>
-      <Route path="/result" component={Result}></Route>
+      <Route path="/result" exact component={Result}></Route>
+      <Route path="/failureResult" exact component={FailureResult}></Route>
+      <Route path="/successResult" exact component={SuccessResult}></Route>
     </Router>
   </Provider>,
   document.querySelector("#root")
