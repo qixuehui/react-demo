@@ -14,8 +14,10 @@ function mapDispatchToProps(dispatch) {
     onAddClick: () => {
       dispatch({ type: "add" });
     },
-    getTimu: async () => {
-      let list = await fns.TmList();
+    // page
+    getTimu: async (page) => {
+      console.log(page, "---------------------page2");
+      let list = await fns.PassTmList(page);
       dispatch({
         type: "Getquestions",
         content: list,
@@ -27,33 +29,30 @@ class DatiCom extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      page: 0,
+      pagesum: 0,
+      timusum: 0,
       currentTimu: 0,
       optionStyle: ["optionltem", "optionltem", "optionltem", "optionltem"],
       isChoose: false,
       score: 0,
+      isexit: false,
     };
   }
 
   //组件渲染完成
 
   componentDidMount() {
-    this.props.getTimu();
+    this.props.getTimu(this.state.page);
   }
 
   render() {
-    //store
-    // console.log(this.props, "------------props");
-    //state
-    // console.log(this.state, "---------------state");
-    // console.log(this.state.currentTimu);
     let timuArr = this.props.topiclist;
     let currentNum = this.state.currentTimu;
     let oStyle = this.state.optionStyle;
-
     //如果有题目 渲染选择
     if (timuArr.length > 0) {
-      // console.log(oStyle, "--------------------oStyle");
-      //options数据
+      console.log(timuArr);
       let options = JSON.parse(timuArr[currentNum].options);
       return (
         <div className='datiPage"'>
@@ -109,46 +108,83 @@ class DatiCom extends React.Component {
     // console.log(currentAnswer);
     //请求数据
     let score = this.state.score;
+    let timusum = this.state.timusum;
+    let isexit = this.state.isexit;
     //答对
     if (index + 1 === Number(currentAnswer)) {
+      timusum++;
+      isexit = false;
       let optionStyle = this.state.optionStyle;
       optionStyle[index] = "optionltem correct";
       this.setState({
         optionStyle: optionStyle,
         isChoose: true,
         score: score + 10,
+        timusum: timusum,
+        isexit: false,
       });
     }
     //答错
     else {
+      isexit = true;
       let optionStyle = this.state.optionStyle;
       optionStyle[index] = "optionltem error";
       //正确答案
       optionStyle[Number(currentAnswer) - 1] = "optionltem correct";
       this.setState({
+        isexit: true,
         optionStyle: optionStyle,
         isChoose: true,
         score: score - 10,
       });
     }
+    if (isexit) {
+      window.location.href = "http://localhost:3000/failureResult";
+    }
     //2秒跳转至下一题
     let currentNumTimu = this.state.currentTimu;
+    let sum = this.state.pagesum;
+    let page = this.state.page;
     setTimeout(() => {
       console.log(currentNumTimu);
       //let currentNum = this.state.currentTimu
       let currentNum = currentNumTimu;
       currentNum++;
       console.log(currentNum);
-      if (currentNum === 10) {
-        this.props.history.push("/result", { score: this.state.score });
+      if (sum === 30) {
+        this.props.history.push("/successresult");
       } else {
-        this.setState({
-          currentTimu: currentNum,
-          optionStyle: ["optionltem", "optionltem", "optionltem", "optionltem"],
-          isChoose: false,
-        });
+        if (currentNum % 9 === 0) {
+          console.log("下一页了");
+          this.setState({
+            page: ++this.state.page,
+            pagesum: ++this.state.pagesum,
+            currentTimu: currentNum,
+            optionStyle: [
+              "optionltem",
+              "optionltem",
+              "optionltem",
+              "optionltem",
+            ],
+            isChoose: false,
+          });
+          //请求下一页
+          console.log(this.state.page, "-------------page");
+          this.props.getTimu(this.state.page);
+        } else {
+          this.setState({
+            currentTimu: currentNum,
+            optionStyle: [
+              "optionltem",
+              "optionltem",
+              "optionltem",
+              "optionltem",
+            ],
+            isChoose: false,
+          });
+        }
       }
-    }, 2000);
+    }, 1000);
   };
 }
 

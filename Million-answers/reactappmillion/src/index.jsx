@@ -23,9 +23,11 @@ ReactDOM.render(
     <Router>
       {/* exact精确 */}
       <Route path="/" exact component={App}></Route>
+      {/* 三种答题情况 */}
       <Route path="/dati" exact component={Dati}></Route>
       <Route path="/passdati" exact component={PassDati}></Route>
       <Route path="/competitiondati" exact component={CompetitionDati}></Route>
+      {/* 成功或者失败组件路由跳转 */}
       <Route path="/result" exact component={Result}></Route>
       <Route path="/failureResult" exact component={FailureResult}></Route>
       <Route path="/successResult" exact component={SuccessResult}></Route>

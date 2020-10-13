@@ -22,7 +22,9 @@ class Counter extends React.Component {
     return (
       <div>
         <h1>恭喜您获得{this.props.location.state.score}分</h1>
-        <Button onClick={this.goDatiPage}>回到首页</Button>
+        <Button onClick={this.goDatiPage} className="padbt">
+          回到首页
+        </Button>
       </div>
     );
   }
