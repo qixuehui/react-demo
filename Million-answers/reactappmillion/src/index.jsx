@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 // 需要的数据
 import App from "./view/App";
 import Dati from "./view/Dati";
+import PassDati from "./view/PassDati";
+import CompetitionDati from "./view/CompetitionDati";
 import Result from "./view/Result";
 import store from "./store/data";
 import "./assets/css/style.css";
@@ -20,6 +22,8 @@ ReactDOM.render(
       {/* exact精确 */}
       <Route path="/" exact component={App}></Route>
       <Route path="/dati" exact component={Dati}></Route>
+      <Route path="/passdati" exact component={PassDati}></Route>
+      <Route path="/competitiondati" exact component={CompetitionDati}></Route>
       <Route path="/result" component={Result}></Route>
     </Router>
   </Provider>,
