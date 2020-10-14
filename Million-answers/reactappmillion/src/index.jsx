@@ -12,7 +12,10 @@ import Result from "./view/Result";
 import SuccessResult from "./view/SuccessResult";
 import FailureResult from "./view/FailureResult";
 import store from "./store/data";
+import Login from "./view/login";
+import Registered from "./view/registered";
 import "./assets/css/style.css";
+import "./assets/css/login.css";
 // import { createStore } from 'redux'
 // import { Button } from 'antd-mobile'
 //
@@ -22,7 +25,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       {/* exact精确 */}
-      <Route path="/" exact component={App}></Route>
+      <Route path="/" exact component={Login}></Route>
+      <Route path="/registered" exact component={Registered}></Route>
+      <Route path="/home" exact component={App}></Route>
       {/* 三种答题情况 */}
       <Route path="/dati" exact component={Dati}></Route>
       <Route path="/passdati" exact component={PassDati}></Route>

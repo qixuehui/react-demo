@@ -26,7 +26,7 @@ con.connect(err => {
 
 
 
-
+//题目数据
 //创建promise对象查询方法
 function queryFn(sqlStr, arr) {
     //创建连接对象
@@ -43,6 +43,5 @@ function queryFn(sqlStr, arr) {
         })
     })
 }
-
 
 module.exports = queryFn;

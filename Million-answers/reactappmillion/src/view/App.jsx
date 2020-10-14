@@ -22,7 +22,18 @@ class Home extends React.Component {
         <ComplexButtonDemo className="bitem" url={Competitionurl}>
           竞赛答题
         </ComplexButtonDemo>
-        <img src={"https://i.loli.net/2020/10/13/YC1fEtMy73hmKxb.png"} alt="" />
+        <ul className="w3lsg-bubbles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
     );
   }

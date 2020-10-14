@@ -78,6 +78,18 @@ class DatiCom extends React.Component {
               );
             })}
           </div>
+          <ul className="w3lsg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
         </div>
       );
     }
