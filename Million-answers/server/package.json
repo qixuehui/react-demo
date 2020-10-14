@@ -1,11 +1,8 @@
 {
-  "dependencies": {
-<<<<<<< HEAD
-    "body-parser": "^1.19.0",
-=======
->>>>>>> 5196d9dffe2300ca7a300153ff4b9cd233188cb7
-    "express": "^4.17.1",
-    "mysql": "^2.18.1",
-    "router": "^1.3.5"
-  }
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "express": "^4.17.1",
+        "mysql": "^2.18.1",
+        "router": "^1.3.5"
+    }
 }
