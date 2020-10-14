@@ -8,7 +8,7 @@ class login extends React.Component {
       <div className="main-w3layouts wrapper">
         <div className="main-agileinfo">
           <div className="agileits-top">
-            <form className="ipform" method="post" action="#">
+            <form className="ipform" method="post" action="/login">
               <input type="text" placeholder="用户名" className="text"></input>
               <input
                 type="password"
