@@ -21,21 +21,28 @@ router.get("/api/rtimu", async function(req, res) {
 });
 //注册
 router.get("/registered", async function(req, res) {
-    res.redirect("http://localhost:3000/");
-});
-router.post("/registered", async function(req, res) {
-    console.log(req.body);
-    // 访问get;
-    res.send("nihao1");
+    console.log(req.query.username);
+    console.log(req.query.password);
+    //跨域解决
+    res.append("Access-Control-Allow-Origin", "*");
+    res.append("Access-Control-Allow-Content-Type", "*");
+    let sql = `insert into user (username,password) values (${req.query.username},${req.query.password})`;
+    const result = await insertUFn(sql);
+    res.json(Array.from(result));
+    // res.redirect("http://localhost:3000/");
 });
 //登录
 router.get("/login", async function(req, res) {
-    res.redirect("http://localhost:3000/home");
-});
-router.post("/login", async function(req, res) {
-    console.log(req.body);
-    // 访问get;
-    res.send("nihao1");
+    console.log(req.query.username);
+    console.log(req.query.password);
+    //跨域解决
+    res.append("Access-Control-Allow-Origin", "*");
+    res.append("Access-Control-Allow-Content-Type", "*");
+    let sql = `select username,password from user where username='${req.query.username}' and password='${req.query.password}'`;
+    const result = await queryUFn(sql);
+    res.json(Array.from(result));
+    //跨域解决
+    // res.redirect("http://localhost:3000/home");
 });
 
 module.exports = router;

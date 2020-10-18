@@ -331,7 +331,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background: #8a2be2;
+    background: #fc85ad;
     -webkit-transform: translateY(8px);
     -ms-transform: translateY(8px);
     -o-transform: translateY(8px);
@@ -407,10 +407,11 @@ input[type="submit"]:hover {
 }
 
 input.checkbox {
-    background: #4c2395;
+    background: rgb(161, 78, 143);
     cursor: pointer;
     width: 1.2em;
     height: 1.2em;
+    margin-right: 10px;
 }
 
 input.checkbox:before {
@@ -431,7 +432,7 @@ input.checkbox:after {
     z-index: 1;
     width: 1.2em;
     height: 1.2em;
-    border: 1px solid #ffc107;
+    border: 1px solid rgba(0, 0, 0, 1);
 }
 
 input.checkbox:checked:after {
