@@ -1,23 +1,34 @@
 import React from "react";
 
 class registered extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    console.log(this.props);
     return (
       <div className="main-w3layouts wrapper">
         <div className="main-agileinfo">
           <div className="agileits-top">
-            <form id="ipform" className="ipform">
+            <form
+              id="ipform"
+              className="ipform"
+              method="post"
+              action="http://localhost:8080/registered"
+            >
               <input
                 type="text"
                 placeholder="用户名"
                 className="text"
                 id="username"
+                name="username"
               ></input>
               <input
                 type="password"
                 placeholder="密码"
                 className="text"
                 id="password"
+                name="password"
               ></input>
               <div className="wthree-text">
                 <ul>
@@ -56,28 +67,6 @@ class registered extends React.Component {
         </ul>
       </div>
     );
-  }
-  ajax() {
-    document.querySelector("#ipform").addEventListener("submit", function (e) {
-      e.preventDefault();
-      let ipfrom = document.querySelector("#ipform");
-      let username = ipfrom.querySelector("#username").value;
-      let password = ipfrom.querySelector("#password").value;
-      let formData = {
-        fusername: username,
-        fpassword: password,
-      };
-      var xhr = new XMLHttpRequest();
-      xhr.open(
-        "get",
-        `http://localhost:8080/registered?username=${username}&password=${password}`
-      );
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log(xhr.responseText);
-        }
-      };
-    });
   }
 }
 

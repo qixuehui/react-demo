@@ -1,4 +1,5 @@
 // 首页
+//3000
 import React from "react";
 import { connect } from "react-redux";
 import ComplexButtonDemo from "../component/button";

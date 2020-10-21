@@ -35,19 +35,4 @@ function queryUFn(sqlStr, arr) {
         });
     });
 }
-
-function insertUFn(sqlStr, arr) {
-    let con = createConnection(connection);
-    return new Promise((resolve, reject) => {
-        con.insert(sqlStr, arr, (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-                con.end();
-            }
-        });
-    });
-}
 module.exports.queryUFn = queryUFn;
-module.exports.insertUFn = insertUFn;

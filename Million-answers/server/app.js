@@ -17,11 +17,11 @@ const app = express();
 // });
 
 //中间件 body-parser
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(router);
-
+//8080
 app.listen(8080, function() {
     console.log("running", "http://localhost:8080/");
 });

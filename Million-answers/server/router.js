@@ -1,6 +1,6 @@
 const express = require("express");
 const queryFn = require("./sql");
-const { queryUFn, insertUFn } = require("./user");
+// const { queryUFn, insertUFn } = require("./user");
 
 const router = express.Router();
 
@@ -19,30 +19,45 @@ router.get("/api/rtimu", async function(req, res) {
     // res.send(result)
     res.json(Array.from(result));
 });
+
 //注册
-router.get("/registered", async function(req, res) {
-    console.log(req.query.username);
-    console.log(req.query.password);
-    //跨域解决
-    res.append("Access-Control-Allow-Origin", "*");
-    res.append("Access-Control-Allow-Content-Type", "*");
-    let sql = `insert into user (username,password) values (${req.query.username},${req.query.password})`;
-    const result = await insertUFn(sql);
-    res.json(Array.from(result));
-    // res.redirect("http://localhost:3000/");
+router.post("/registered", async function(req, res) {
+    console.log("post(/registered");;
+    username = req.body.username
+    password = req.body.password
+    console.log(username);
+    console.log(password);
+    let sql = `insert into user (username,password) values ('${username}','${password}')`;
+    //插入方法有问题
+    const result = await queryFn(sql);
+    console.log(result);
+    if (result != -1) {
+        res.redirect('http://localhost:3000/')
+    } else {
+        res.redirect('http://localhost:3000/registered')
+    }
 });
-//登录
-router.get("/login", async function(req, res) {
-    console.log(req.query.username);
-    console.log(req.query.password);
-    //跨域解决
-    res.append("Access-Control-Allow-Origin", "*");
-    res.append("Access-Control-Allow-Content-Type", "*");
-    let sql = `select username,password from user where username='${req.query.username}' and password='${req.query.password}'`;
-    const result = await queryUFn(sql);
-    res.json(Array.from(result));
-    //跨域解决
-    // res.redirect("http://localhost:3000/home");
-});
+router.post("/login", async function(req, res) {
+    console.log('post("/login"');
+    username = req.body.username
+    password = req.body.password
+    console.log(username);
+    console.log(password);
+    let sql = `select * from user where username='${username}' and password='${password}'`;
+    //插入方法有问题
+    const result = await queryFn(sql);
+    console.log(result);
+    console.log(result.length);
+    if (result.length === 0) {
+        //跳转到登录界面
+        console.log('失败');
+        res.redirect('http://localhost:3000/')
+    } else {
+        //跳转到答题界面
+        console.log('成功');
+        res.redirect('http://localhost:3000/home')
+
+    }
+})
 
 module.exports = router;
